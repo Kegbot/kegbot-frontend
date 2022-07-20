@@ -1,0 +1,8 @@
+{
+  "/api/v2": {
+    "target": "http://localhost:8008"
+  },
+  "/static": {
+    "target": "http://localhost:8008"
+  }
+}
