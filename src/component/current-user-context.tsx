@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext, useContext } from "react";
+import LoginView from "../view/login";
 import ApiContext from "./api-context";
+import LoadingZone from "./loading-zone";
 
 interface CurrentUserContextInterface {
   currentUser: object;
@@ -18,6 +20,7 @@ const CurrentUserContext = createContext<CurrentUserContextInterface>({
 export const CurrentUserProvider = function ({ children }) {
   const { apiClient } = useContext(ApiContext);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isInitiallyLoading, setIsInitiallyLoading] = useState(true);
 
   const logout = async () => {
     setCurrentUser(null);
@@ -33,32 +36,44 @@ export const CurrentUserProvider = function ({ children }) {
     const loggedInUser = await apiClient.login(username, password);
     setCurrentUser(loggedInUser);
     return loggedInUser;
-  }
+  };
 
   useEffect(() => {
     async function load() {
       try {
-        setCurrentUser(await apiClient.getCurrentUser());
+        const newCurrentUser = await apiClient.getCurrentUser();
+        setCurrentUser(newCurrentUser);
       } catch (e) {
         console.error(e);
         setCurrentUser(null);
+      } finally {
+        // Stop blocking children rendering after our first attempt.
+        setIsInitiallyLoading(false);
       }
     }
     if (apiClient) {
       load();
     }
-  }, [apiClient]);
+  }, [apiClient, setCurrentUser]);
+
+  const isLoggedIn = !!currentUser;
 
   return (
     <CurrentUserContext.Provider
       value={{
         currentUser,
-        isLoggedIn: !!currentUser,
+        isLoggedIn,
         login,
         logout,
       }}
     >
-      {children}
+      {isInitiallyLoading ? (
+        <LoadingZone />
+      ) : isLoggedIn ? (
+        children
+      ) : (
+        <LoginView />
+      )}
     </CurrentUserContext.Provider>
   );
 };

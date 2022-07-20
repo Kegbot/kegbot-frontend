@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Kegbot/kegbot-frontend#readme",
   "dependencies": {
     "bootstrap": "^5.2.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.2.0",
@@ -30,6 +31,8 @@
     "react-router-dom": "^6.3.0"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.6.2",
+    "@types/prop-types": "^15.7.5",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "doctoc": "^2.2.0",

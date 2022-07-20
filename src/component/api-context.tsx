@@ -8,7 +8,7 @@ interface ApiContextInterface {
 const ApiContext = createContext<ApiContextInterface>({ apiClient: null });
 
 export const ApiProvider = function({ children }) {
-    const [apiClient] = useState(new ApiClient());
+  const [apiClient] = useState(new ApiClient());
 
   return (
     <ApiContext.Provider

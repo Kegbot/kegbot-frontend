@@ -134,8 +134,19 @@ class ApiClient {
     return this._get("events");
   }
 
+  async getSystemStatus() {
+    return this._get("status");
+  }
+
   async getCurrentUser() {
-    return this._get("auth/current-user");
+    try {
+      return this._get("auth/current-user");
+    } catch (e) {
+      if (e instanceof NotAuthorizedError) {
+        return null;
+      }
+      throw e;
+    }
   }
 
   async login(username: string, password: string) {

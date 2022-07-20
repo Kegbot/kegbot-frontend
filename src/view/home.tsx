@@ -1,13 +1,32 @@
 import { useContext, useEffect } from "react";
-import ApiContext from "../component/api-context";
+import { Col, Row } from "react-bootstrap";
+import SystemStatusContext from "../component/system-status-context";
+
+const SystemEvent = ({ event }) => {
+  return <div>{event.kind}</div>;
+};
+
+const RecentEventsList = () => {
+  const { events } = useContext(SystemStatusContext);
+
+  const items = events.map((event) => {
+    return <SystemEvent key={event.id} event={event} />;
+  });
+
+  return <>{items}</>;
+};
 
 export default function HomeView() {
-  const { apiClient } = useContext(ApiContext);
-  useEffect(() => {
-    async function load() {
-      await apiClient.getEvents();
-    }
-    load();
-  }, [apiClient]);
-  return <h1>Hello, world!</h1>;
+  const { site, events } = useContext(SystemStatusContext);
+
+  return (
+    <>
+      <h1>{site.title}</h1>
+      <Row>
+        <Col>
+          <RecentEventsList />
+        </Col>
+      </Row>
+    </>
+  );
 }

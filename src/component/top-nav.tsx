@@ -4,12 +4,14 @@ import { LinkContainer } from "react-router-bootstrap";
 import CurrentUserContext from "./current-user-context";
 
 export default function TopNav() {
-  const { currentUser, isLoggedIn, login, logout } = useContext(CurrentUserContext);
-
+  const { currentUser, isLoggedIn, logout } = useContext(CurrentUserContext);
   const rightMenu = isLoggedIn ? (
     <NavDropdown title={currentUser.username}>
-        <NavDropdown.Item onClick={logout}>Log out</NavDropdown.Item>
-    </NavDropdown>) : <Nav.Link>Log in</Nav.Link>;
+      <NavDropdown.Item onClick={logout}>Log out</NavDropdown.Item>
+    </NavDropdown>
+  ) : (
+    <Nav.Link>Log in</Nav.Link>
+  );
 
   return (
     <Container fluid>
