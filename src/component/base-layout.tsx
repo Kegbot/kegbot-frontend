@@ -1,5 +1,6 @@
-import { Container } from "react-bootstrap";
-import TopNav from "./top-nav";
+import { Container } from 'react-bootstrap';
+
+import TopNav from './top-nav';
 
 export default function BaseLayout({ children }) {
   return (

@@ -1,10 +1,12 @@
-import { useContext, useState } from "react";
-import { Button, Card, Form } from "react-bootstrap";
-import CurrentUserContext from "./current-user-context";
+import { useContext, useState } from 'react';
+
+import { Button, Card, Form } from 'react-bootstrap';
+
+import CurrentUserContext from './current-user-context';
 
 export default function LoginForm({ onLoggedIn = () => {} }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const { login } = useContext(CurrentUserContext);
 
   const doSumbit = async (e) => {

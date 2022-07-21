@@ -44,7 +44,7 @@ class BadRequestError extends JSONHTTPError {
 
 class ApiClient {
   private baseUrl: string;
-  constructor(baseUrl = "/api/v2/") {
+  constructor(baseUrl = '/api/v2/') {
     this.baseUrl = baseUrl;
   }
 
@@ -55,21 +55,21 @@ class ApiClient {
   /** Fetch standard headers that should be set per-request. */
   _getHeaders() {
     return {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-      "X-CSRFToken": this._getCsrfCookie(),
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-CSRFToken': this._getCsrfCookie(),
     };
   }
 
   _getCsrfCookie(name = 'csrftoken') {
     return document.cookie
       .split('; ')
-      .find(row => row.startsWith(`${name}=`))
+      .find((row) => row.startsWith(`${name}=`))
       ?.split('=')[1];
   }
 
   async _processResponse(response) {
-    const contentType = response.headers.get("Content-Type");
+    const contentType = response.headers.get('Content-Type');
     const isJSON = contentType && contentType.match(/json/);
     const data = isJSON ? await response.json() : await response.text();
     if (response.ok) {
@@ -92,13 +92,13 @@ class ApiClient {
       querystring.append(key, params[key]);
     }
     const rawQs = querystring.toString();
-    const qs = rawQs ? `?${rawQs}` : "";
+    const qs = rawQs ? `?${rawQs}` : '';
     const url = `${this.baseUrl}${path}${qs}`;
 
     const headers = this._getHeaders();
 
     const encodedData = data ? JSON.stringify(data) : null;
-    const options = <RequestInit> {
+    const options = {
       method,
       headers: {
         ...headers,
@@ -107,7 +107,7 @@ class ApiClient {
       credentials: 'include',
     };
     if (data) {
-      options.headers["Content-Length"] = encodedData.length;
+      options.headers['Content-Length'] = encodedData.length;
       options.body = encodedData;
     }
     debug(`>>> ${method} ${url} options=${JSON.stringify(options)}`);
@@ -123,24 +123,24 @@ class ApiClient {
   }
 
   async _get(path, params = {}) {
-    return this._fetch("GET", path, null, params);
+    return this._fetch('GET', path, null, params);
   }
 
   async _post(path, data = null, params = {}) {
-    return this._fetch("POST", path, data, params);
+    return this._fetch('POST', path, data, params);
   }
 
   async getEvents() {
-    return this._get("events");
+    return this._get('events');
   }
 
   async getSystemStatus() {
-    return this._get("status");
+    return this._get('status');
   }
 
   async getCurrentUser() {
     try {
-      return this._get("auth/current-user");
+      return this._get('auth/current-user');
     } catch (e) {
       if (e instanceof NotAuthorizedError) {
         return null;
@@ -154,11 +154,11 @@ class ApiClient {
       username,
       password,
     };
-    return this._post("auth/login", data);
+    return this._post('auth/login', data);
   }
 
   async logout() {
-    return this._post("auth/logout");
+    return this._post('auth/logout');
   }
 }
 

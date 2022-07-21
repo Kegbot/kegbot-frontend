@@ -1,7 +1,8 @@
-import { useState, useEffect, createContext, useContext } from "react";
-import LoginView from "../view/login";
-import ApiContext from "./api-context";
-import LoadingZone from "./loading-zone";
+import { createContext, useContext, useEffect, useState } from 'react';
+
+import LoginView from '../view/login';
+import ApiContext from './api-context';
+import LoadingZone from './loading-zone';
 
 interface CurrentUserContextInterface {
   currentUser: object;
@@ -67,13 +68,7 @@ export const CurrentUserProvider = function ({ children }) {
         logout,
       }}
     >
-      {isInitiallyLoading ? (
-        <LoadingZone />
-      ) : isLoggedIn ? (
-        children
-      ) : (
-        <LoginView />
-      )}
+      {isInitiallyLoading ? <LoadingZone /> : isLoggedIn ? children : <LoginView />}
     </CurrentUserContext.Provider>
   );
 };

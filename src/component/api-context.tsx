@@ -1,19 +1,20 @@
-import { useState, useEffect, createContext } from "react";
-import ApiClient from "../lib/api";
+import { createContext, useEffect, useState } from 'react';
+
+import ApiClient from '../lib/api';
 
 interface ApiContextInterface {
-    apiClient: ApiClient;
-  }
-  
+  apiClient: ApiClient;
+}
+
 const ApiContext = createContext<ApiContextInterface>({ apiClient: null });
 
-export const ApiProvider = function({ children }) {
+export const ApiProvider = function ({ children }) {
   const [apiClient] = useState(new ApiClient());
 
   return (
     <ApiContext.Provider
       value={{
-        apiClient
+        apiClient,
       }}
     >
       {children}

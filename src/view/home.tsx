@@ -1,6 +1,8 @@
-import { useContext, useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
-import SystemStatusContext from "../component/system-status-context";
+import { useContext, useEffect } from 'react';
+
+import { Col, Row } from 'react-bootstrap';
+
+import SystemStatusContext from '../component/system-status-context';
 
 const SystemEvent = ({ event }) => {
   return <div>{event.kind}</div>;

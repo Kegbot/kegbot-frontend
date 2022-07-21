@@ -1,7 +1,8 @@
-import { useState, useEffect, createContext, useContext } from "react";
-import ApiContext from "./api-context";
-import CurrentUserContext from "./current-user-context";
-import LoadingZone from "./loading-zone";
+import { createContext, useContext, useEffect, useState } from 'react';
+
+import ApiContext from './api-context';
+import CurrentUserContext from './current-user-context';
+import LoadingZone from './loading-zone';
 
 interface SystemStatusContextInterface {
   site: object;
@@ -17,8 +18,7 @@ const DEFAULT_STATUS = {
   isAvailable: false,
 };
 
-const SystemStatusContext =
-  createContext<SystemStatusContextInterface>(DEFAULT_STATUS);
+const SystemStatusContext = createContext<SystemStatusContextInterface>(DEFAULT_STATUS);
 
 export const SystemStatusProvider = function ({ children }) {
   const { apiClient } = useContext(ApiContext);

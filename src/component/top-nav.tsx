@@ -1,7 +1,9 @@
-import { useContext } from "react";
-import { Col, Container, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import CurrentUserContext from "./current-user-context";
+import { useContext } from 'react';
+
+import { Col, Container, Nav, NavDropdown, Navbar, Row } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
+
+import CurrentUserContext from './current-user-context';
 
 export default function TopNav() {
   const { currentUser, isLoggedIn, logout } = useContext(CurrentUserContext);
@@ -31,7 +33,7 @@ export default function TopNav() {
               </Nav>
             </Navbar.Collapse>
             <Navbar.Collapse role="login">
-              <Nav className="justify-content-end" style={{ width: "100%" }}>
+              <Nav className="justify-content-end" style={{ width: '100%' }}>
                 {rightMenu}
               </Nav>
             </Navbar.Collapse>
