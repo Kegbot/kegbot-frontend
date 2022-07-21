@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import ApiContext from './api-context';
-import CurrentUserContext from './current-user-context';
-import LoadingZone from './loading-zone';
+import ApiContext from './ApiContext';
+import CurrentUserContext from './CurrentUserContext';
+import LoadingZone from './LoadingZone';
 
 interface SystemStatusContextInterface {
   site: object;

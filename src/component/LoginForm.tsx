@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 
 import { Button, Card, Form } from 'react-bootstrap';
 
-import CurrentUserContext from './current-user-context';
+import CurrentUserContext from './CurrentUserContext';
 
 export default function LoginForm({ onLoggedIn = () => {} }) {
   const [username, setUsername] = useState('');

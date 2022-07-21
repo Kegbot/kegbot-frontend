@@ -1,7 +1,7 @@
 import { Col, Row } from 'react-bootstrap';
 
-import BaseLayout from '../component/base-layout';
-import LoginForm from '../component/login-form';
+import BaseLayout from '../component/BaseLayout';
+import LoginForm from '../component/LoginForm';
 
 export default function LoginView() {
   return (

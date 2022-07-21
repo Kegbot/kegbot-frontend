@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react';
 
-import ApiClient from '../lib/api';
+import ApiClient from '../lib/ApiClient';
 
 interface ApiContextInterface {
   apiClient: ApiClient;

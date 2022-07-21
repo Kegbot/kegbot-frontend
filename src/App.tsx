@@ -1,12 +1,11 @@
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { ApiProvider } from './component/api-context';
-import BaseLayout from './component/base-layout';
-import { CurrentUserProvider } from './component/current-user-context';
-import { SystemStatusProvider } from './component/system-status-context';
-import TopNav from './component/top-nav';
-import HomeView from './view/home';
+import { ApiProvider } from './component/ApiContext';
+import BaseLayout from './component/BaseLayout';
+import { CurrentUserProvider } from './component/CurrentUserContext';
+import { SystemStatusProvider } from './component/SystemStatusContext';
+import HomeView from './view/HomeView';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 

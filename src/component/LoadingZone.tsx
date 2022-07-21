@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 
 import * as PropTypes from 'prop-types';
 
-import './loading-zone.scss';
+import './LoadingZone.scss';
 
 interface LoadingZoneInterface {
   isLoading: boolean | (() => boolean);

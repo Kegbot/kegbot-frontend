@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { Col, Container, Nav, NavDropdown, Navbar, Row } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 
-import CurrentUserContext from './current-user-context';
+import CurrentUserContext from './CurrentUserContext';
 
 export default function TopNav() {
   const { currentUser, isLoggedIn, logout } = useContext(CurrentUserContext);

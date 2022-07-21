@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import LoginView from '../view/login';
-import ApiContext from './api-context';
-import LoadingZone from './loading-zone';
+import LoginView from '../view/LoginView';
+import ApiContext from './ApiContext';
+import LoadingZone from './LoadingZone';
 
 interface CurrentUserContextInterface {
   currentUser: object;
