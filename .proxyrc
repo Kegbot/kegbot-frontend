@@ -4,5 +4,8 @@
   },
   "/static": {
     "target": "http://localhost:8008"
+  },
+  "/media": {
+    "target": "http://localhost:8008"
   }
 }

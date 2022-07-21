@@ -1,0 +1,34 @@
+.event-list {
+  .base-event {
+    h3,
+    h4 {
+      margin: 0;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+    h4 {
+      font-size: 1em;
+    }
+  }
+
+  > * {
+    margin-bottom: 1em;
+  }
+
+  .inline-event {
+    display: flex;
+    .image-box {
+      flex-basis: 40px;
+      flex-shrink: 0;
+      img {
+        max-height: 32px;
+        margin-right: 0.25em;
+      }
+    }
+    .detail-box {
+      flex-grow: 1;
+    }
+  }
+}
