@@ -1,18 +1,19 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
+import { SiteStatus, SystemEvent, Tap } from '../lib/ApiClient';
 import ApiContext from './ApiContext';
 import CurrentUserContext from './CurrentUserContext';
 import LoadingZone from './LoadingZone';
 
 interface SystemStatusContextInterface {
-  site: object;
-  taps: Array<object>;
-  events: Array<object>;
+  site: SiteStatus | null;
+  taps: Array<Tap>;
+  events: Array<SystemEvent>;
   isAvailable: boolean;
 }
 
 const DEFAULT_STATUS = {
-  site: {},
+  site: null,
   taps: [],
   events: [],
   isAvailable: false,

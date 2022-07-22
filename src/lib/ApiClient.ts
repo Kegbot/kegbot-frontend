@@ -42,6 +42,75 @@ class BadRequestError extends JSONHTTPError {
   }
 }
 
+export interface Paginated<T> {
+  next: string | null;
+  previous: string | null;
+  results: [T];
+}
+
+export interface Picture {
+  resized_url: string;
+  resized_png_url: string;
+  thumbnail_url: string;
+  thumbnail_png_url: string;
+}
+
+export interface Stats {
+  [key: string]: any;
+}
+
+export interface SiteStatus {
+  name: string;
+  server_version: string;
+  is_setup: boolean;
+  volume_display_units: string;
+  temperature_display_units: string;
+  title: string;
+  background_image: Picture | null;
+  google_analytics_id: string | null;
+  session_timeout_minutes: number;
+  privacy: string;
+  registration_mode: string;
+  timezone: string;
+  enable_sensing: boolean;
+  enable_users: boolean;
+  stats: Stats;
+}
+
+export interface Keg {
+  id: number;
+}
+
+export interface Drink {
+  id: number;
+}
+
+export interface User {
+  username: string;
+  picture: Picture | null;
+}
+
+export interface SystemEvent {
+  id: number;
+  kind: string;
+  time: string;
+  drink: Drink | null;
+  user: User | null;
+  keg: Keg | null;
+}
+
+export interface Tap {
+  id: number;
+  name: string;
+  current_keg: Keg | null;
+}
+
+export interface SystemStatus {
+  site: SiteStatus;
+  events: [SystemEvent];
+  taps: [Tap];
+}
+
 class ApiClient {
   private baseUrl: string;
   constructor(baseUrl = '/api/v2/') {
@@ -130,15 +199,15 @@ class ApiClient {
     return this._fetch('POST', path, data, params);
   }
 
-  async getEvents() {
+  async getEvents(): Promise<Paginated<SystemEvent>> {
     return this._get('events');
   }
 
-  async getSystemStatus() {
+  async getSystemStatus(): Promise<SystemStatus> {
     return this._get('status');
   }
 
-  async getCurrentUser() {
+  async getCurrentUser(): Promise<User | null> {
     try {
       return this._get('auth/current-user');
     } catch (e) {
@@ -149,7 +218,7 @@ class ApiClient {
     }
   }
 
-  async login(username: string, password: string) {
+  async login(username: string, password: string): Promise<User> {
     const data = {
       username,
       password,
@@ -157,7 +226,7 @@ class ApiClient {
     return this._post('auth/login', data);
   }
 
-  async logout() {
+  async logout(): Promise<null> {
     return this._post('auth/logout');
   }
 }

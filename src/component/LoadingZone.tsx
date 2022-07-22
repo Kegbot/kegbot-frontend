@@ -5,11 +5,14 @@ import * as PropTypes from 'prop-types';
 import './LoadingZone.scss';
 
 interface LoadingZoneInterface {
-  isLoading: boolean | (() => boolean);
+  isLoading?: boolean | (() => boolean);
   children: ReactNode;
 }
 
-export default function LoadingZone({ children = null, isLoading = true }: LoadingZoneInterface) {
+export default function LoadingZone({
+  children = null,
+  isLoading = true,
+}: LoadingZoneInterface): JSX.Element {
   const loading = typeof isLoading === 'function' ? isLoading() : !!isLoading;
 
   if (loading) {
@@ -32,7 +35,7 @@ export default function LoadingZone({ children = null, isLoading = true }: Loadi
       </div>
     );
   }
-  return children;
+  return <>{children}</>;
 }
 
 LoadingZone.propTypes = {
