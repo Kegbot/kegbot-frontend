@@ -1,0 +1,30 @@
+.taps-list {
+  > * {
+    margin-bottom: 1em;
+  }
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+  h3 {
+    font-weight: normal;
+  }
+
+  .beverage {
+    .beverage-name {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+    .producer-name {
+    }
+  }
+}
+.summary {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  font-size: 0.9em;
+}
