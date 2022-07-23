@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 
 import { Card, Col, Container, Image, Row } from 'react-bootstrap';
+import Moment from 'react-moment';
 
 import SystemStatusContext from './SystemStatusContext';
 
@@ -25,9 +26,15 @@ const BaseSystemEventInline = ({ event, children = null }) => {
     <>
       <div className={'inline-event'}>
         <div className="image-box">{imageUrl && <Image src={imageUrl} fluid />}</div>
-        <div className="detail-box">{children}</div>
+        <div className="detail-box">
+          {children}
+          <small>
+            <p className="text-muted">
+              <Moment fromNow>{event.time}</Moment>
+            </p>
+          </small>
+        </div>
       </div>
-      <hr />
     </>
   );
 };
@@ -51,6 +58,13 @@ const BaseSystemEventCard = ({ event, title, children = null }) => {
             <Image src={imageUrl} fluid />
           </Col>
           <Col sm={10}>{children}</Col>
+        </Row>
+        <Row>
+          <Col sm={12}>
+            <div className="text-end">
+              <Moment fromNow>{event.time}</Moment>
+            </div>
+          </Col>
         </Row>
       </Card.Body>
     </Card>

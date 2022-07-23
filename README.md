@@ -31,7 +31,7 @@ Currently, the frontend only runs from a developer environment. It will eventual
 Install the various javascript dependencies:
 
 ```
-$yarn install
+yarn install
 ```
 
 ### Running the development server

@@ -1,4 +1,5 @@
 import { Col, Row } from 'react-bootstrap';
+import Moment from 'react-moment';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { ApiProvider } from './component/ApiContext';
@@ -9,11 +10,20 @@ import HomeView from './view/HomeView';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { useEffect } from 'react';
+
 const KegsView = () => {
   return <h1>Kegs!</h1>;
 };
 
 export function App() {
+  // Activate the `react-moment` feature which shares a single timer
+  // for updating all `<Moment />` components.
+  useEffect(() => {
+    Moment.startPooledTimer();
+    return () => Moment.clearPooledTimer();
+  }, []);
+
   const pageContent = (
     <BaseLayout>
       <Row>
